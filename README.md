@@ -684,3 +684,228 @@ Souhaites-tu maintenant :
 * Ou qu’on **compare les 3 projets pour choisir le meilleur pour ton groupe** ?
 
 👉 À toi de me dire !
+
+Parfait. On garde **FanForge**. L’idée de base est **riche, originale, motivante**. Tu veux juste qu’on aille **plus loin dans la profondeur métier**, pas juste du "vote pondéré" ou "score de réputation à la StackOverflow".
+Tu veux du **contenu intelligent, organique, scénarisé**, avec des **algorithmes métiers qui claquent**, mais **sans sortir du réalisable sur un semestre à 4**.
+
+---
+
+## 🎯 Objectif : Réinventer **FanForge** avec des **algos métiers plus puissants, plus narratifs, plus fins**
+
+Tu veux un **système narratif qui a un comportement intelligent**, pas un simple conteneur de chapitres.
+
+Alors on va :
+
+1. Garder le **cadre de fanfiction communautaire structurée**.
+2. Ajouter des **mécanismes narratifs et algorithmiques qui ont du sens** : pas juste voter, mais **raisonner sur la logique narrative**.
+3. Structurer ça en **features ambitieuses mais testables**.
+
+---
+
+# 💡 Refonte de FanForge : **Narration assistée, univers vivants, cohérence algorithmique**
+
+---
+
+## 🧠 Nouvelle vision des algorithmes métier
+
+Chaque feature aura une **logique narrative forte + algo métier intelligent** côté back :
+
+| Domaine                  | Algorithme métier proposé                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------- |
+| Narration                | Validation de cohérence temporelle et causale entre chapitres                            |
+| Personnages              | Suivi de l’évolution des personnages dans l’univers (état, statut, relations, etc.)      |
+| Univers partagés         | Règles de lore vérifiées automatiquement (contradictions détectées, alertes)             |
+| Écriture assistée        | Suggestions de branches basées sur le contexte narratif actuel                           |
+| Engagement communautaire | Sélection de chapitres canon basée sur *tension dramatique* et *continuité narrative*    |
+| Relecture critique       | Moteur de détection de "failles scénaristiques" (personnages morts qui reviennent, etc.) |
+
+---
+
+## 🧱 Les 6 nouvelles features et leurs algos métiers associés
+
+---
+
+### 🚚 **Livraison 1 : Création narrative + gestion de trame logique**
+
+---
+
+### 🔹 Feature 1 : **Système d’arbre narratif avec logique temporelle & causale**
+
+📌 **Use case** :
+Un auteur ajoute un chapitre. Il doit préciser :
+
+* la scène précédente à laquelle il se rattache,
+* les événements majeurs (type : "mort d’un perso", "trahison", "révélation").
+
+➡️ Le back vérifie :
+
+* Que la **date/ordre chronologique** est compatible avec la trame (pas d’incohérence de timeline),
+* Que les **événements ne contredisent pas un canon déjà validé**.
+
+🧠 **Algo métier** :
+
+* Chaque chapitre a un timestamp narratif (`narrativeTime`) et un ensemble d’**événements**.
+* L’algo crée un graphe temporel et vérifie qu’un événement A (ex: "X meurt") **n’est pas annulé** par un chapitre postérieur sans explication.
+
+✅ **Testable facilement** :
+
+* Données factices avec incohérences temporelles → test de rejet.
+* Cas de fork logique → test de détection multiple.
+
+---
+
+### 🔹 Feature 2 : **Suivi intelligent des personnages (états + cohérence)**
+
+📌 **Use case** :
+Lorsqu’un personnage est utilisé dans un chapitre, l’auteur doit indiquer son état narratif (vivant, blessé, exilé, etc.).
+
+➡️ Le back :
+
+* Maintient une **fiche d’état évolutive** pour chaque personnage,
+* Bloque ou alerte l’auteur si un chapitre **contredit l’état actuel** d’un personnage.
+
+🧠 **Algo métier** :
+
+* Une `CharacterStateMachine` qui évolue selon les chapitres (ex : `healthy` → `wounded` → `dead`),
+* Si une incohérence est détectée (ex: personnage mort utilisé comme vivant), le système lève un warning.
+
+✅ **Tests unitaires** :
+
+* Simulation de transitions d’états (vivant → mort → vivant),
+* Test de cohérence sur plusieurs branches.
+
+---
+
+### 🚚 **Livraison 2 : Intelligence narrative & continuité de style**
+
+---
+
+### 🔹 Feature 3 : **Sélection automatique de chapitres canons par logique narrative**
+
+📌 **Use case** :
+Plusieurs suites d’un chapitre sont proposées. Le back :
+
+* Évalue leur **cohérence avec les chapitres précédents**,
+* Prend en compte le vote des lecteurs **et** la **continuité logique**.
+
+🧠 **Algo métier** :
+
+* Pour chaque chapitre proposé, le back calcule :
+
+  * un **score de cohérence événementielle** (pas de contradiction avec passé),
+  * un **score de continuité stylistique** (longueur moyenne, ton, etc.),
+  * un **score d’engagement** (nombre de votes, commentaires).
+
+➡️ Le chapitre avec **meilleure moyenne pondérée** est promu "canon".
+
+✅ **Tests unitaires** :
+
+* Tester le calcul des scores,
+* Vérifier la sélection finale selon pondération.
+
+---
+
+### 🔹 Feature 4 : **Suggestion intelligente de branches futures**
+
+📌 **Use case** :
+Quand un chapitre est publié, le système peut suggérer aux auteurs :
+
+* des idées de suites,
+* des personnages à réutiliser,
+* des événements non encore résolus.
+
+🧠 **Algo métier** :
+
+* Analyse des arcs narratifs ouverts : personnages sans fin, événements sans résolution.
+* Génération de suggestions du type :
+
+  > "Et si le traître révélait son identité dans le prochain chapitre ?"
+
+✅ **Testable avec scénarios types** :
+
+* Entrée : univers avec 2 arcs non résolus → suggestions attendues.
+* Vérifier que les suggestions sont pertinentes ou modifiables.
+
+---
+
+### 🚚 **Livraison 3 : Modération narrative & univers partagés**
+
+---
+
+### 🔹 Feature 5 : **Moteur de détection de contradictions dans l’univers**
+
+📌 **Use case** :
+Quand un univers devient vaste, les chapitres peuvent entrer en contradiction.
+
+➡️ Le système scanne périodiquement l’univers pour détecter :
+
+* des incohérences logiques (`lieu A` détruit dans un chapitre, réutilisé ensuite),
+* des duplications (`même perso avec deux noms`, etc.)
+
+🧠 **Algo métier** :
+
+* Indexation sémantique des entités (`Lieu`, `Objet`, `Personnage`)
+* Règles de détection (ex: *une entité ne peut exister à deux endroits simultanément*),
+* Génération de **rapports d’incohérence**.
+
+✅ **Test unitaire** :
+
+* Création de chapitres contradictoires → vérification du flag automatique.
+
+---
+
+### 🔹 Feature 6 : **Timeline visuelle générée automatiquement**
+
+📌 **Use case** :
+Les utilisateurs peuvent voir une **timeline interactive** de l’univers :
+
+* événements majeurs,
+* branches narratives,
+* arcs non résolus.
+
+🧠 **Algo métier** :
+
+* Agrégation de tous les événements `event(type, subject, chapter)` triés par `narrativeTime`.
+* Construction d’un graphe narratif côté back (noeuds = chapitres, arcs = suites).
+* Export en JSON pour affichage (via d3.js ou autre).
+
+✅ **Tests unitaires** :
+
+* Graphe correct pour des inputs connus,
+* Détection des branches orphelines.
+
+---
+
+## 🧠 Résumé des nouveaux **algorithmes métiers** — riches, logiques, narratifs
+
+| Feature | Algo central                              | Complexité  | Testabilité |
+| ------- | ----------------------------------------- | ----------- | ----------- |
+| F1      | Graphe temporel + cohérence causale       | 🟡 Moyen    | ✅ Forte     |
+| F2      | Machine d’états des personnages           | 🟡 Moyen    | ✅ Forte     |
+| F3      | Sélection canon multi-critères            | 🟡 Moyen    | ✅ Moyenne   |
+| F4      | Générateur de suggestions basé sur arcs   | 🟡 Moyen    | ✅ Moyenne   |
+| F5      | Détection d’incohérences univers narratif | 🔴 Complexe | ✅ Partielle |
+| F6      | Génération de timeline + graphe narratif  | 🟡 Moyen    | ✅ Forte     |
+
+---
+
+## ✅ Pourquoi cette version est meilleure :
+
+| Critère                  | Réponse                                              |
+| ------------------------ | ---------------------------------------------------- |
+| Originalité              | ✅ Fort — concept narratif assisté par algos logiques |
+| Complexité Back          | ✅ Importante, mais testable                          |
+| Réutilisabilité de l’API | ✅ Facile à connecter à d’autres fronts               |
+| Pertinence académique    | ✅ Algorithmes métiers clairs et justifiables         |
+| Faisabilité              | ✅ 3 mois à 4, avec bonne répartition des tâches      |
+
+---
+
+## 🔧 Tu veux quoi maintenant ?
+
+* 🔄 Une **liste des endpoints REST** pour ces features ?
+* 🗂️ Un **modèle de données Java (entités, relations)** ?
+* 🧪 Un **plan de tests JUnit** pour l’un des algos métiers ?
+* 🗓️ Un **planning sur 12 semaines** avec sprints & milestones ?
+*
+
